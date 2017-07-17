@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>制作回车切换的输入效果</title>
+<style type="text/css">
+body{
+	margin:0;
+	padding:0;
+	font-size:14px;
+	line-height:25px;
+}
+.main{
+	width:470px;
+	margin-left:auto;
+	margin-right:auto;
+	}
+
+.left{
+	text-align:right;
+	width:90px;
+	height:35px;
+	padding-right:5px;
+	}
+.inputs{
+	width:100px;
+	height:16px;
+	border:solid 1px #666666;
+	float:left;
+	margin-right:5px;
+	}
+.prompt{
+	margin-left:10px;
+	color:#F00;
+	}	
+</style>
+<script type="text/javascript">
+function $(elementId){
+  return document.getElementById(elementId).value;
+	}
+function divId(elementId){
+  return document.getElementById(elementId);
+	}
+/*用户名验证*/	
+function checkUser(){
+  var user=$("user");
+  var userId=divId("user_prompt");
+   userId.innerHTML="";	
+  var reg=/^[a-zA-Z][\w_]{4,15}$/;	
+    if(reg.test(user)==false){
+	   userId.innerHTML="用户名不正确";
+	return false;
+	  }
+	  return true;
+	}
+
+	
+	/*密码验证*/	
+function checkPwd(){
+  var pwd=$("pwd");
+  var pwdId=divId("pwd_prompt");
+   pwdId.innerHTML="";	
+  var reg=/^[a-zA-Z0-9]{4,10}$/;	
+    if(reg.test(pwd)==false){
+	   pwdId.innerHTML="密码填写不正确";
+	return false;
+	  }
+	  return true;
+	}
+function showUser(){
+	var userId=divId("user_prompt");
+   userId.innerHTML="首位为字母的 4-16个数字、字母、下线划";	
+	}
+function showPwd(){
+	var pwdId=divId("pwd_prompt");
+   pwdId.innerHTML="4-10个字母和下划线";	
+	}
+	
+function changeFocus(){
+//键盘回车键对应的ascii码是13，tab键对应的ascii码是9  
+/*判断按下回车键的控件类型：不能是提交、重置按钮等类型*/    
+if (event.keyCode==13 && event.srcElement.type!='image'){
+	     event.keyCode=9;
+	}
+ }
+ //dcument对象的onkeydown事件 
+document.onkeydown= changeFocus;  
+</script>
+
+
+</head>
+
+<body>
+<div class="main"><img src="images/top.jpg"  alt="top"/></div>
+<div class="main"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td class="left">用户名：</td>
+    <td><input id="user" type="text" class="inputs" onblur="checkUser()" onfocus="showUser()" /><div id="user_prompt" class="prompt"></div></td>
+  </tr>
+  <tr>
+    <td class="left">密码：</td>
+    <td><input id="pwd" type="password"  class="inputs" onblur="checkPwd()" onfocus="showPwd()" /><div id="pwd_prompt" class="prompt"></div></td>
+  </tr>
+  <tr>
+    <td class="left">&nbsp;</td>
+    <td><input name="" type="image" src="images/sumbit_btn.jpg" /></td>
+  </tr>
+</table>
+</div>
+</body>
+</html>

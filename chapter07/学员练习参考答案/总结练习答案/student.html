@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>根据班级显示学生姓名</title>
+<script type="text/javascript">
+var grade=new Array();
+grade["一班"]=["Mick","Rose","Mike","Niki","John"];
+grade["二班"]=["Lily","Bill","Paul","Helen","Henry"];
+grade["三班"]=["Lisa","Mary","Emily","Joy","Jane"];
+function changeStudent(){
+     var gradeName=document.getElementById("grade").value; 
+	 var student=document.getElementById("student");
+	 student.options.length=0; //清除当前city中的选项
+	for (var i in grade){
+	        if (i == gradeName){
+                for (var j in grade[i]){
+					student.add(new Option(grade[i][j],grade[i][j]),null);
+                }
+            }
+       }
+  } 
+  function gradeClass(){
+	  var gradeName=document.getElementById("grade");
+      for (var i in grade){
+		 gradeName.add(new Option(i, i),null); 
+		}	
+  }
+    window.onload=gradeClass;
+</script>
+</head>
+
+<body>
+班级名称：<select id="grade" onchange="changeStudent()" style="width:120px;">
+       <option>请选择班级名称</option>
+       </select><br/>
+学生姓名：<select id="student" style="width:120px;">
+          <option>请选择学生姓名</option>
+         </select>
+</body>
+</html>

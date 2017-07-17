@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GB2312">
+<link rel="stylesheet" type="text/css" href="images/tryCatch.css">
+
+<title>JavaScript Try...Catch 语句</title>
+</head>
+
+<body class="browserscripting">
+<div id="wrapper">
+
+
+<div id="maincontent">
+
+<h1>JavaScript Try...Catch 语句</h1>
+
+
+<div id="intro">
+<p><strong>try...catch 的作用是测试代码中的错误。</strong></p>
+</div>
+
+<div class="example">
+<h2>实例</h2>
+<dl>
+<dt><a href="#">try...catch 语句</a></dt>
+<dd>如何编写 try...catch 语句。</dd>
+
+<dt><a href="#">带有确认框的 try...catch 语句</a></dt>
+<dd>另一个编写 try...catch 语句的例子。</dd>
+</dl>
+</div>
+
+<div>
+<h2>JavaScript - 捕获错误</h2>
+
+<p>当我们在网上冲浪时，总会看到带有 runtime 错误的 Javascript 警告框，同时会询问我们“是否进行 debug？”。像这样的错误信息或许对开发人员有用，对用户则未必。当错误发生时，他们往往会选择离开这个站点。</p>
+<p>本节向你讲解如何捕获和处理 Javascript 的错误消息，这样就可以为受众提供更多的便利。</p>
+
+<p>有两种在网页中捕获错误的方法：</p>
+<ul>
+<li>使用 <em>try...catch</em> 语句。(在 IE5+、Mozilla 1.0、和 Netscape 6 中可用) </li>
+<li>使用 <em>onerror</em> 事件。这是用于捕获错误的老式方法。(Netscape 3 以后的版本可用)</li>
+</ul>
+</div>
+
+<div>
+<h2>Try...Catch 语句</h2>
+<p>try...catch 可以测试代码中的错误。try 部分包含需要运行的代码，而 catch 部分包含错误发生时运行的代码。</p>
+
+<h3>语法：</h3>
+<pre><code>try</code>
+{
+   //在此运行代码
+}
+<code>catch(err)</code>
+{
+   //在此处理错误
+}</pre>
+
+<p class="important"><span>注意：</span>try...catch 使用小写字母。大写字母会出错。</p>
+
+<h3>实例 1</h3>
+<p>下面的例子原本用在用户点击按钮时显示 "Welcome guest!" 这个消息。不过 message() 函数中的 alert() 被误写为 adddlert()。这时错误发生了：</p>
+<pre>&lt;html&gt;
+&lt;head&gt;
+&lt;script type="text/javascript"&gt;
+function message()
+{
+adddlert("Welcome guest!")
+}
+&lt;/script&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+&lt;input type="button" value="View message" onclick="message()" /&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;</pre>
+<p>我们可以添加 try...catch 语句，这样当错误发生时可以采取更适当的措施。</p>
+<p>下面的例子用 try...catch 语句重新修改了脚本。由于误写了 alert()，所以错误发生了。不过这一次，catch 部分捕获到了错误，并用一段准备好的代码来处理这个错误。这段代码会显示一个自定义的出错信息来告知用户所发生的事情。</p>
+<pre>&lt;html&gt;
+&lt;head&gt;
+&lt;script type="text/javascript"&gt;
+var txt=""
+function message()
+{
+<code>try</code>
+  {
+  adddlert("Welcome guest!")
+  }
+<code>catch(err)</code>
+  {
+  txt="此页面存在一个错误。\n\n"
+  txt+="错误描述: " + err.description + "\n\n"
+  txt+="点击OK继续。\n\n"
+  alert(txt)
+  }
+}
+&lt;/script&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+&lt;input type="button" value="View message" onclick="message()" /&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;</pre>
+</div>
+
+<div>
+<h2>实例 2</h2>
+
+<p>下一个例子会显示一个确认框，让用户来选择在发生错误时点击确定按钮来继续浏览网页，还是点击取消按钮来回到首页。如果 confirm
+方法的返回值为 false，代码会把用户重定向到其他的页面。如果 confirm 方法的返回值为 true，那么代码什么也不会做。</p>
+<pre>&lt;html&gt;
+&lt;head&gt;
+&lt;script type="text/javascript"&gt;
+var txt=""
+function message()
+{
+<code>try</code>
+  {
+  adddlert("Welcome guest!")
+  }
+<code>catch(err)</code>
+  {
+  txt="There was an error on this page.\n\n"
+  txt+="Click OK to continue viewing this page,\n"
+  txt+="or Cancel to return to the home page.\n\n"
+  if(!confirm(txt))
+    {
+    document.location.href="http://www.w3school.com.cn/"
+    }
+  }
+}
+&lt;/script&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+&lt;input type="button" value="View message" onclick="message()" /&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;</pre>
+</div>
+
+</div>
+
+</body></html>

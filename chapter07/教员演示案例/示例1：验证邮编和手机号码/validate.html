@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>验证邮编和手机号码</title>
+<style type="text/css">
+body{
+	line-height:25px;
+	}
+input{
+	width:120px;
+	height:16px;
+	}
+div{
+	color:#F00;
+	font-size:12px;
+	}
+</style>
+<script type="text/javascript">
+function checkCode(){
+	var code=document.getElementById("code").value;
+	var codeId=document.getElementById("code_prompt");
+	var regCode=/^\d{6}$/;
+	if(regCode.test(code)==false){
+		codeId.innerHTML="邮政编码不正确，请重新输入";
+		return false;
+		}
+		codeId.innerHTML="";
+		return true;s
+	}
+function checkMobile(){
+	var mobile=document.getElementById("mobile").value;
+	var mobileId=document.getElementById("mobile_prompt");
+	var regMobile=/^1\d{10}$/;
+	if(regMobile.test(mobile)==false){
+		mobileId.innerHTML="手机号码不正确，请重新输入";
+		return false;
+		}
+		mobileId.innerHTML="";
+		return true;
+	}
+</script>
+</head>
+
+<body>
+邮政编码：<input id="code" type="text" onblur="checkCode()"/>
+<div id="code_prompt"></div>
+手机号码：<input id="mobile" type="text" onblur="checkMobile()" />
+<div id="mobile_prompt"></div>
+</body>
+</html>

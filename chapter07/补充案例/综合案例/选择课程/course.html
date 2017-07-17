@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//Dtd XHTML 1.0 transitional//EN" "http://www.w3.org/tr/xhtml1/Dtd/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>选择课程</title>
+<script type="text/javascript">
+	 var courseList = new Array( );
+     courseList["第一学期"] = ['Java', 'SqlServer基础', 'C#', 'HTML'];
+	 courseList["第二学期"] =['JavaScript', 'SqlServer高级', '.NET', 'JSP'];
+     courseList["第三学期"] = ['Struts', 'ASP.NET', 'Ajax','Spring','Hibernate'];
+	 
+   function changeTerm( )
+  {
+	 //获得学期选项的索引号，如第一学期为1，比对应数组索引号多1
+	 var selTerm=document.getElementById("selTerm").value; 
+	 var selCourse=document.getElementById("selCourse");
+	 selCourse.options.length=0; //清除当前city中的选项
+	for (var i in courseList){
+	        if (i == selTerm){
+                for (var j in courseList[i]){
+					selCourse.add(new Option(courseList[i][j],courseList[i][j]),null);
+                }
+            }
+       }
+	
+  }
+  
+ function allTerm(){
+	  var selTerm=document.getElementById("selTerm");
+      for (var i in courseList){
+		 selTerm.add(new Option(i, i),null); 
+		}	
+  }
+    window.onload=allTerm;  
+</script>
+</head>
+
+<body>
+<form name="myform" id="myform">
+
+  <table border="0"  align="center" >
+    <tr>
+      <td colspan="2" align="center">考 试 申 请</td>
+    </tr>
+    <tr>
+      <td>学期</td>
+      <td><select id="selTerm"   onChange="changeTerm( )">
+        <option>--请选择学期--</option>
+      </select></td>
+    </tr>
+    <tr>
+      <td>课程</td>
+      <td><select id="selCourse"   >
+        <option>--请选择对应学期的课程--</option>
+      </select></td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>

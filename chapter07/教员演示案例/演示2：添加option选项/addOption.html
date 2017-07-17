@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>添加option选项</title>
+</head>
+
+<body>
+ <form action="" method="post" name="myform">
+<select  id="city"  style="width:100px"></select>
+  </form>
+<script type="text/javascript">
+/*使用createElement创建节点的方法*/
+
+/*var newOption=document.createElement("option");
+newOption.text="北京市";
+newOption.value="01";
+document.getElementById("city").add(newOption,null);*/
+
+
+/*使用new关键字创建对象的方法*/
+/*
+var newOption=new Option();
+newOption.text="北京市";
+newOption.value="01";
+document.getElementById("city").add(newOption,null);
+*/
+/*
+var newOption=new Option("北京市","01");
+document.getElementById("city").options.add(newOption,null);
+*/
+
+document.getElementById("city").add(new Option("北京市","01"),null);
+</script>
+</body>
+</html>

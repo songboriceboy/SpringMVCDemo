@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>腾讯游戏选择</title>
+<style type="text/css">
+body{
+	margin:0;
+	padding:0;
+	font-size:14px;
+	line-height:28px;
+	font-weight:bold;
+}
+.main{
+	width:450px;
+	margin-left:auto;
+	margin-right:auto;
+	text-align:center;
+	background-color:#1c85b4;
+	color:#FFF;
+	}
+</style>
+<script type="text/javascript">
+ var game = new Array( );
+	 game['纸牌游戏']=['斗地主', '拖拉机', '桥牌', '拱猪', '打百分'];
+	 game['棋类游戏']=['军棋', '跳棋', '五子棋', '围棋', '中国象棋', '国际象棋', '飞行棋', '黑白棋'];
+	 game['其他游戏'] = ['连连看', '俄罗斯方块', '麻将', '台球', '挑错'];
+  function changeGame(){
+     var gameType=document.getElementById("gameType").value;  //获取省份选项的值
+	 var gameList=document.getElementById("gameList");
+	 gameList.options.length=0; //清除selCity列表中的选项
+	for (var i in game){
+	        if (i == gameType){
+                for (var j in game[i]){
+					gameList.add(new Option(game[i][j],game[i][j]),null);
+                }
+            }
+       }
+  }
+function allGame(){
+	  var gameType=document.getElementById("gameType");
+      for (var i in game){
+		 gameType.add(new Option(i, i),null); 
+		}	
+  }
+    window.onload=allGame;
+</script>
+</head>
+
+<body>
+<div class="main"><img src="images/banner.jpg" alt="top" /></div>
+<div class="main" style=" padding-bottom:10px;">
+<form action="" method="post" name="myform">
+请选择游戏类别：
+<select id="gameType" onChange="changeGame( )" style="width:120px;">
+      <option>--游戏分类--</option>
+ </select>
+<br />请选择游戏名称：
+<select id="gameList" style="width:120px;">
+      <option>--游戏名称--</option>
+</select>
+<br />
+<img src="images/login.gif" alt="login" style="margin:20px;" />
+</form>
+</div>
+</body>
+</html>
